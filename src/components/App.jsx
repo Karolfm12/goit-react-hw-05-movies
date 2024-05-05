@@ -21,7 +21,7 @@ export const App = () => {
       try {
         const response = await fetch(URL);
         const data = await response.json();
-        console.log(data);
+
         setPopularMovies(prev => [...prev, ...data.results]);
       } catch (error) {
         console.error(error);
@@ -37,12 +37,15 @@ export const App = () => {
           <Link to="/">Home</Link>
           <Link to="/movies">Movies</Link>
         </nav>
+        <hr />
       </header>
 
       <Routes>
         <Route path="/" element={<Home popularMovies={popularMovies} />} />
         <Route path="/movies" element={<Movies />} />
-        <Route path="/movies/:id" element={<MovieDetails />} />
+        <Route path="/movies/:movieId" element={<MovieDetails />} />
+        <Route path="/movies/:movieId/cast" element={<MovieDetails />} />
+        <Route path="/movies/:movieId/reviews" element={<MovieDetails />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>
